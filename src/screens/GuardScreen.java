@@ -37,10 +37,18 @@ public class GuardScreen extends JFrame {
                 }
             }
         });
+        historyBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String history = homeScreen.getEvents();
+                JOptionPane.showMessageDialog(null, history);
+            }
+        });
     }
 
     private JButton guardBtn;
     private JPanel panel;
+    private JButton historyBtn;
 
     public void setGuardBtnImage (String filename) {
         guardBtn.setIcon(new ImageIcon(filename));

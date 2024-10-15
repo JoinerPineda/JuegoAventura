@@ -5,13 +5,15 @@ import screens.DoorScreen;
 import screens.GuardScreen;
 import screens.HomeScreen;
 
+import java.util.LinkedList;
+
 public class Main {
     public static void main(String[] args) {
         HomeScreen homeScreen = new HomeScreen();
         DoorScreen doorScreen = new DoorScreen();
         GuardScreen guardScreen = new GuardScreen();
         RiddleRepository repository = new RiddleRepository();
-        AdventureGame game = new AdventureGame(0, repository.getRiddles());
+        AdventureGame game = new AdventureGame(0, repository.getRiddles(), new LinkedList<>());
 
         homeScreen.setDoorScreen(doorScreen);
         homeScreen.setGuardScreen(guardScreen);

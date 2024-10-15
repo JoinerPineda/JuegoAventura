@@ -89,4 +89,8 @@ public class HomeScreen extends JFrame {
         doorScreen.setVisible(false);
         this.setVisible(true);
     }
+
+    public String getEvents () {
+        return game.getEvents();
+    }
 }
