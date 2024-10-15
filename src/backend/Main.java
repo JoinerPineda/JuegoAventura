@@ -1,5 +1,6 @@
 package backend;
 
+import backend.riddles.RiddleRepository;
 import screens.DoorScreen;
 import screens.GuardScreen;
 import screens.HomeScreen;
@@ -9,9 +10,12 @@ public class Main {
         HomeScreen homeScreen = new HomeScreen();
         DoorScreen doorScreen = new DoorScreen();
         GuardScreen guardScreen = new GuardScreen();
+        RiddleRepository repository = new RiddleRepository();
+        AdventureGame game = new AdventureGame(0, repository.getRiddles());
 
         homeScreen.setDoorScreen(doorScreen);
         homeScreen.setGuardScreen(guardScreen);
+        homeScreen.setGame(game);
 
         homeScreen.setSize(1300,500);
         homeScreen.setLocationRelativeTo(null);

@@ -1,5 +1,8 @@
 package screens;
 
+import backend.AdventureGame;
+import backend.riddles.Riddle;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +11,8 @@ public class HomeScreen extends JFrame {
 
     private DoorScreen doorScreen;
     private GuardScreen guardScreen;
+
+    private AdventureGame game;
 
     public HomeScreen () {
         setContentPane(panel);
@@ -36,12 +41,22 @@ public class HomeScreen extends JFrame {
         this.doorScreen.setHomeScreen(this);
     }
 
+
+    public AdventureGame getGame() {
+        return game;
+    }
+
+    public void setGame(AdventureGame game) {
+        this.game = game;
+    }
+
     public JFrame getGuardScreen() {
         return guardScreen;
     }
 
     public void setGuardScreen(GuardScreen guardScreen) {
         this.guardScreen = guardScreen;
+        this.guardScreen.setHomeScreen(this);
     }
 
     public void goToGuardScreen (int fromDoor) {
@@ -55,5 +70,23 @@ public class HomeScreen extends JFrame {
         }
 
         guardScreen.setVisible(true);
+    }
+
+    public Riddle getRiddle () {
+        return game.getRiddle();
+    }
+
+    public boolean solve (String response) {
+        return game.play(response);
+    }
+
+    public boolean hasOver () {
+        return game.hasOver();
+    }
+
+    public void backHome() {
+        guardScreen.setVisible(false);
+        doorScreen.setVisible(false);
+        this.setVisible(true);
     }
 }

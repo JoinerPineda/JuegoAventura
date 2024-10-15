@@ -39,7 +39,7 @@ public class RiddleRepository {
     public void generateDifficultNumericRiddles () {
         difficultNumericRiddles.add(new NumericRiddle("Si sumas el doble de un número con el número mismo, obtienes 45. ¿Cuál es el número?", 15));
         difficultNumericRiddles.add(new NumericRiddle("Un número multiplicado por 5, luego dividido entre 2, y finalmente sumado con 7, da como resultado 32. ¿Qué número es?", 10));
-        difficultNumericRiddles.add(new NumericRiddle("La suma de tres números consecutivos es 63. ¿Cuáles son los números?", 20)); // Los números son 20, 21 y 22
+        difficultNumericRiddles.add(new NumericRiddle("Un número multiplicado por 3 es 63. ¿Cuáles es el número?", 21));
         difficultNumericRiddles.add(new NumericRiddle("El doble de un número menos 15 es igual a la mitad del mismo número más 5. ¿Cuál es el número?", 10));
         difficultNumericRiddles.add(new NumericRiddle("Multiplico un número por 3, le resto 9 y obtengo el doble del mismo número más 6. ¿Cuál es el número?", 15));
         difficultNumericRiddles.add(new NumericRiddle("Si un número multiplicado por 4 es igual al mismo número más 30, ¿cuál es el número?", 10));
@@ -49,8 +49,8 @@ public class RiddleRepository {
         difficultNumericRiddles.add(new NumericRiddle("El triple de un número, sumado con su mitad, es igual a 90. ¿Cuál es el número?", 24));
     }
 
-    public ArrayList<NumericRiddle> getNumericRiddles(ArrayList<NumericRiddle> riddles, int quantity) {
-        ArrayList<NumericRiddle> selectedRiddles = new ArrayList<>();
+    private ArrayList<Riddle> getNumericRiddles(ArrayList<NumericRiddle> riddles, int quantity) {
+        ArrayList<Riddle> selectedRiddles = new ArrayList<>();
         Random random = new Random();
 
         if (quantity > riddles.size()) {
@@ -68,12 +68,19 @@ public class RiddleRepository {
     }
 
 
-    public ArrayList<NumericRiddle> getDifficultNumericRiddles(int quantity) {
+    public ArrayList<Riddle> getDifficultNumericRiddles(int quantity) {
         return getNumericRiddles(difficultNumericRiddles, quantity);
     }
 
-    public ArrayList<NumericRiddle> getBasicNumericRiddles(int quantity) {
+    public ArrayList<Riddle> getBasicNumericRiddles(int quantity) {
         return getNumericRiddles(basicNumericRiddles, quantity);
     }
+
+    public ArrayList<Riddle> getRiddles () {
+        ArrayList<Riddle> riddles = getBasicNumericRiddles(1);
+        riddles.addAll(getDifficultNumericRiddles(1));
+        return riddles;
+    }
+
 
 }
